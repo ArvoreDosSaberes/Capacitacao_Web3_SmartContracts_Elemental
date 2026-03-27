@@ -1,64 +1,60 @@
 /**
  * Script de deploy dos contratos do Elemental Protocol.
- * Uso com Hardhat: npx hardhat run scripts/deploy.js --network sepolia
- * Ou adaptável para Remix IDE (copiar lógica para console do Remix).
+ *
+ * Hardhat v3 + viem:
+ *   npx hardhat run scripts/deploy.js --network sepolia
+ *
+ * Para deploy via Ignition (recomendado):
+ *   npx hardhat ignition deploy ignition/modules/ElementalProtocol.ts --network sepolia
  */
 
-const hre = require("hardhat");
+import { network } from "hardhat";
+import { formatEther, getAddress } from "viem";
 
-async function main() {
-    const [deployer] = await hre.ethers.getSigners();
-    console.log("Deploying contracts with:", deployer.address);
-    console.log("Balance:", hre.ethers.utils.formatEther(await deployer.getBalance()), "ETH\n");
+const { viem } = await network.connect();
 
-    // 1. Deploy ElemToken
-    const ElemToken = await hre.ethers.getContractFactory("ElemToken");
-    const token = await ElemToken.deploy(deployer.address);
-    await token.deployed();
-    console.log("ElemToken deployed at:", token.address);
+const publicClient = await viem.getPublicClient();
+const [deployer] = await viem.getWalletClients();
+const deployerAddress = deployer.account.address;
 
-    // 2. Deploy ElemNFT
-    const ElemNFT = await hre.ethers.getContractFactory("ElemNFT");
-    const nft = await ElemNFT.deploy(deployer.address);
-    await nft.deployed();
-    console.log("ElemNFT deployed at:", nft.address);
+const balance = await publicClient.getBalance({ address: deployerAddress });
+console.log("Deploying contracts with:", deployerAddress);
+console.log("Balance:", formatEther(balance), "ETH\n");
 
-    // 3. Deploy PriceFeed
-    // Chainlink ETH/USD em Sepolia: 0x694AA1769357215DE4FAC081bf1f309aDC325306
-    const CHAINLINK_ETH_USD_SEPOLIA = "0x694AA1769357215DE4FAC081bf1f309aDC325306";
-    const PriceFeed = await hre.ethers.getContractFactory("PriceFeed");
-    const priceFeed = await PriceFeed.deploy(CHAINLINK_ETH_USD_SEPOLIA, deployer.address);
-    await priceFeed.deployed();
-    console.log("PriceFeed deployed at:", priceFeed.address);
+// 1. Deploy ElemToken
+const elemToken = await viem.deployContract("ElemToken", [deployerAddress]);
+console.log("ElemToken deployed at:", elemToken.address);
 
-    // 4. Deploy ElemStaking
-    const ElemStaking = await hre.ethers.getContractFactory("ElemStaking");
-    const staking = await ElemStaking.deploy(token.address, priceFeed.address, deployer.address);
-    await staking.deployed();
-    console.log("ElemStaking deployed at:", staking.address);
+// 2. Deploy ElemNFT
+const elemNFT = await viem.deployContract("ElemNFT", [deployerAddress]);
+console.log("ElemNFT deployed at:", elemNFT.address);
 
-    // 5. Deploy ElemDAO
-    const ElemDAO = await hre.ethers.getContractFactory("ElemDAO");
-    const dao = await ElemDAO.deploy(token.address, deployer.address);
-    await dao.deployed();
-    console.log("ElemDAO deployed at:", dao.address);
+// 3. Deploy PriceFeed
+// Chainlink ETH/USD em Sepolia: 0x694AA1769357215DE4FAC081bf1f309aDC325306
+const CHAINLINK_ETH_USD_SEPOLIA = getAddress("0x694AA1769357215DE4FAC081bf1f309aDC325306");
+const priceFeed = await viem.deployContract("PriceFeed", [CHAINLINK_ETH_USD_SEPOLIA, deployerAddress]);
+console.log("PriceFeed deployed at:", priceFeed.address);
 
-    // Resumo
-    console.log("\n========================================");
-    console.log("DEPLOY COMPLETO – Elemental Protocol");
-    console.log("========================================");
-    console.log("ElemToken  :", token.address);
-    console.log("ElemNFT    :", nft.address);
-    console.log("PriceFeed  :", priceFeed.address);
-    console.log("ElemStaking:", staking.address);
-    console.log("ElemDAO    :", dao.address);
-    console.log("========================================");
-    console.log("\nAtualize os endereços em ui/js/app.js (ADDRESSES)");
-}
+// 4. Deploy ElemStaking
+const elemStaking = await viem.deployContract("ElemStaking", [
+    elemToken.address,
+    priceFeed.address,
+    deployerAddress,
+]);
+console.log("ElemStaking deployed at:", elemStaking.address);
 
-main()
-    .then(() => process.exit(0))
-    .catch((error) => {
-        console.error(error);
-        process.exit(1);
-    });
+// 5. Deploy ElemDAO
+const elemDAO = await viem.deployContract("ElemDAO", [elemToken.address, deployerAddress]);
+console.log("ElemDAO deployed at:", elemDAO.address);
+
+// Resumo
+console.log("\n========================================");
+console.log("DEPLOY COMPLETO – Elemental Protocol");
+console.log("========================================");
+console.log("ElemToken  :", elemToken.address);
+console.log("ElemNFT    :", elemNFT.address);
+console.log("PriceFeed  :", priceFeed.address);
+console.log("ElemStaking:", elemStaking.address);
+console.log("ElemDAO    :", elemDAO.address);
+console.log("========================================");
+console.log("\nAtualize os endereços em ui/js/app.js (ADDRESSES)");

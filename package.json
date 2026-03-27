@@ -8,17 +8,36 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:counter": "hardhat test test/Counter.ts",
+    "test:token": "hardhat test test/ElemToken.ts",
+    "test:nft": "hardhat test test/ElemNFT.ts",
+    "test:staking": "hardhat test test/ElemStaking.ts",
+    "test:dao": "hardhat test test/ElemDAO.ts",
+    "test:pricefeed": "hardhat test test/PriceFeed.ts",
+    "deploy:local": "hardhat run scripts/deploy.js",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "ignition:local": "hardhat ignition deploy ignition/modules/ElementalProtocol.ts",
+    "ignition:sepolia": "hardhat ignition deploy ignition/modules/ElementalProtocol.ts --network sepolia",
+    "clean": "hardhat clean"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@nomicfoundation/hardhat-ignition": "^3.1.0",
     "@nomicfoundation/hardhat-toolbox": "^7.0.0",
-    "hardhat": "^3.2.0"
+    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.3",
+    "@types/node": "^22.19.15",
+    "forge-std": "github:foundry-rs/forge-std#v1.9.4",
+    "hardhat": "^3.2.0",
+    "typescript": "~5.8.0",
+    "viem": "^2.47.6"
   },
   "dependencies": {
     "@chainlink/contracts": "^1.5.0",
     "@openzeppelin/contracts": "^5.6.1"
-  }
+  },
+  "type": "module"
 }
