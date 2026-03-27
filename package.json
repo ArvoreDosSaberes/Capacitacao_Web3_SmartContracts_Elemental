@@ -1,0 +1,24 @@
+{
+  "name": "smartcontracts",
+  "version": "1.0.0",
+  "description": "[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/) [![Last Commit](https://img.shields.io/github/last-commit/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado?style=flat-square)](https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado/commits/main) [![Stars](https://img.shields.io/github/stars/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado?style=flat-square)](https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado/stargazers) [![Forks](https://img.shields.io/github/forks/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado?style=flat-square)](https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado/network/members) [![Visits](https://hits.dwyl.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado.svg?style=flat-square&show=unique)](https://hits.dwyl.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^7.0.0",
+    "hardhat": "^3.2.0"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^1.5.0",
+    "@openzeppelin/contracts": "^5.6.1"
+  }
+}

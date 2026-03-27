@@ -1,0 +1,107 @@
+<mxfile host="65bd71144e">
+    <diagram id="fluxo-interacoes" name="Fluxo de Interações entre Contratos">
+        <mxGraphModel dx="1202" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="user" value="Usuário&lt;br&gt;(MetaMask)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="30" width="40" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="token" value="&lt;font color=&quot;#660000&quot;&gt;&lt;b&gt;ElemToken&lt;/b&gt;&lt;br&gt;(ERC-20)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;arcSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="220" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="nft" value="&lt;font color=&quot;#660000&quot;&gt;&lt;b&gt;ElemNFT&lt;/b&gt;&lt;br&gt;(ERC-721)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;arcSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="200" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="staking" value="&lt;b&gt;&lt;font color=&quot;#660000&quot;&gt;ElemStaking&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;arcSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="390" y="200" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="dao" value="&lt;b&gt;ElemDAO&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;arcSize=10;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="200" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="pricefeed" value="&lt;font color=&quot;#660000&quot;&gt;&lt;b&gt;PriceFeed&lt;/b&gt;&lt;br&gt;(Chainlink)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;arcSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="360" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="blockchain" value="&lt;font color=&quot;#660000&quot;&gt;Ethereum Sepolia&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="560" width="180" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="chainlink" value="&lt;font color=&quot;#660000&quot;&gt;Chainlink&lt;br&gt;ETH/USD&lt;/font&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="350" width="150" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="u2token" style="rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#82b366;strokeWidth=2;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="user" target="token" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="u2token_l" value="approve()&lt;br&gt;transfer()&lt;br&gt;burn()" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#82b366;" parent="u2token" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="u2nft" style="rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#d6b656;strokeWidth=2;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="user" target="nft" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="u2nft_l" value="mint(uri)&lt;br&gt;{value: ETH}" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#d6b656;" parent="u2nft" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="u2stake" style="rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#b85450;strokeWidth=2;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="user" target="staking" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="u2stake_l" value="stake()&lt;br&gt;withdraw()&lt;br&gt;claimReward()" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#b85450;" parent="u2stake" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="u2dao" style="rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#666666;strokeWidth=2;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="user" target="dao" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="u2dao_l" value="createProposal()&lt;br&gt;vote()&lt;br&gt;executeProposal()" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#666666;" parent="u2dao" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s2token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#82b366;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="staking" target="token" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2token_l" value="safeTransferFrom() / safeTransfer()" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#82b366;" parent="s2token" vertex="1" connectable="0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="d2token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#82b366;strokeWidth=2;dashed=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="dao" target="token" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="930" y="260"/>
+                            <mxPoint x="930" y="310"/>
+                            <mxPoint x="110" y="310"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="d2token_l" value="balanceOf(voter) → peso do voto" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#82b366;" parent="d2token" vertex="1" connectable="0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s2pf" style="rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#9673a6;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="staking" target="pricefeed" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2pf_l" value="getLatestPrice()" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#9673a6;" parent="s2pf" vertex="1" connectable="0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pf2cl" style="rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#9673a6;strokeWidth=2;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="pricefeed" target="chainlink" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="pf2cl_l" value="latestRoundData()" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#9673a6;" parent="pf2cl" vertex="1" connectable="0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="all2bc" style="rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#6c8ebf;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="pricefeed" target="blockchain" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

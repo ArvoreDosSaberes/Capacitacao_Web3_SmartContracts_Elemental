@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elemental Protocol – Web3 DApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ========== Header ========== -->
+<header>
+    <h1>Elemental Protocol</h1>
+    <div id="wallet-info" style="display:none;">
+        <span id="wallet-address"></span>
+        <span id="elem-balance">0 ELEM</span>
+        <span id="eth-balance">0 ETH</span>
+    </div>
+    <button id="btn-connect">Conectar Carteira</button>
+</header>
+
+<!-- ========== Tabs ========== -->
+<main>
+    <nav class="tabs">
+        <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+        <button class="tab-btn" data-tab="nfts">NFTs</button>
+        <button class="tab-btn" data-tab="staking">Staking</button>
+        <button class="tab-btn" data-tab="dao">Governança (DAO)</button>
+        <button class="tab-btn" data-tab="oracle">Oráculo</button>
+    </nav>
+
+    <!-- ===== Dashboard ===== -->
+    <section id="dashboard" class="panel active">
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="label">Saldo ELEM</div>
+                <div class="value" id="dash-elem">—</div>
+            </div>
+            <div class="stat-box">
+                <div class="label">NFTs Possuídos</div>
+                <div class="value" id="dash-nfts">—</div>
+            </div>
+            <div class="stat-box">
+                <div class="label">Em Staking</div>
+                <div class="value" id="dash-staked">—</div>
+            </div>
+            <div class="stat-box">
+                <div class="label">Recompensas</div>
+                <div class="value" id="dash-rewards">—</div>
+            </div>
+            <div class="stat-box">
+                <div class="label">ETH/USD</div>
+                <div class="value" id="dash-price">—</div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Bem-vindo ao Elemental Protocol</h2>
+            <p style="color:var(--text-secondary);">
+                Conecte sua carteira MetaMask para interagir com o protocolo.
+                Mintar NFTs, fazer staking de ELEM e votar na DAO.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== NFTs ===== -->
+    <section id="nfts" class="panel">
+        <div class="card">
+            <h2>Coleção Elemental Creatures</h2>
+            <p style="color:var(--text-secondary); margin-bottom:1rem;">
+                10 criaturas pixel art únicas. Mint pagando em ETH.
+            </p>
+            <div class="nft-grid" id="nft-grid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Staking ===== -->
+    <section id="staking" class="panel">
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="label">Total em Staking</div>
+                <div class="value" id="stk-total">—</div>
+            </div>
+            <div class="stat-box">
+                <div class="label">Seu Stake</div>
+                <div class="value" id="stk-mine">—</div>
+            </div>
+            <div class="stat-box">
+                <div class="label">Recompensas Pendentes</div>
+                <div class="value" id="stk-rewards">—</div>
+            </div>
+            <div class="stat-box">
+                <div class="label">Taxa Atual</div>
+                <div class="value" id="stk-rate">—</div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Stake de Tokens ELEM</h2>
+            <div class="form-group">
+                <label for="stake-amount">Quantidade de ELEM</label>
+                <input type="number" id="stake-amount" placeholder="0.0" min="0" step="any">
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <button class="btn btn-primary" id="btn-stake">Stake</button>
+                <button class="btn btn-danger" id="btn-unstake">Unstake</button>
+                <button class="btn btn-success" id="btn-claim">Claim Rewards</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DAO ===== -->
+    <section id="dao" class="panel">
+        <div class="card">
+            <h2>Criar Proposta</h2>
+            <div class="form-group">
+                <label for="proposal-desc">Descrição da Proposta</label>
+                <textarea id="proposal-desc" placeholder="Descreva sua proposta..."></textarea>
+            </div>
+            <button class="btn btn-primary" id="btn-create-proposal">Criar Proposta</button>
+        </div>
+        <div class="card">
+            <h2>Propostas</h2>
+            <div id="proposals-list">
+                <p style="color:var(--text-secondary);">Nenhuma proposta encontrada.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Oracle ===== -->
+    <section id="oracle" class="panel">
+        <div class="card">
+            <h2>Oráculo Chainlink – ETH/USD</h2>
+            <div class="oracle-display" id="oracle-price">
+                — USD
+            </div>
+            <p style="color:var(--text-secondary); margin-top:1rem;">
+                O preço é consultado via Chainlink Price Feed e utilizado para ajustar
+                a taxa de recompensa do staking dinamicamente.
+            </p>
+            <button class="btn btn-outline" id="btn-refresh-price" style="margin-top:1rem;">
+                Atualizar Preço
+            </button>
+        </div>
+    </section>
+</main>
+
+<!-- ========== Toast Container ========== -->
+<div id="toast-container"></div>
+
+<!-- ========== Scripts ========== -->
+<script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

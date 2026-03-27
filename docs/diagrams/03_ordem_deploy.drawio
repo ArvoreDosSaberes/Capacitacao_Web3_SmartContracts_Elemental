@@ -1,0 +1,58 @@
+<mxfile host="65bd71144e">
+    <diagram id="ordem-deploy" name="Ordem de Deploy">
+        <mxGraphModel dx="661" dy="464" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="&lt;font color=&quot;#ffcc99&quot;&gt;Ordem de Deploy — Elemental Protocol (Sepolia)&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="20" width="500" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="step1" value="&lt;font color=&quot;#660000&quot;&gt;&lt;b&gt;1) ElemToken&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;1&quot;&gt;ERC-20 — sem dependências externas&lt;br&gt;Params: initialOwner&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;arcSize=10;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="100" width="240" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="step2" value="&lt;font color=&quot;#660000&quot;&gt;&lt;b&gt;2) ElemNFT&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;1&quot;&gt;ERC-721 — sem dependências externas&lt;br&gt;Params: initialOwner&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;arcSize=10;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="100" width="240" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="step3" value="&lt;font color=&quot;#660000&quot;&gt;&lt;b&gt;3) PriceFeed&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;1&quot;&gt;Chainlink Wrapper&lt;br&gt;Params: feedAddress (Sepolia ETH/USD),&lt;br&gt;initialOwner&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;arcSize=10;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="260" width="240" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="step4" value="&lt;font color=&quot;#660000&quot;&gt;&lt;b&gt;4) ElemStaking&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;1&quot;&gt;Depende de ElemToken + PriceFeed&lt;br&gt;Params: _elemToken, _priceFeed,&lt;br&gt;initialOwner&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;arcSize=10;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="260" width="240" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="step5" value="&lt;b&gt;5) ElemDAO&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;1&quot;&gt;Depende de ElemToken&lt;br&gt;Params: _elemToken, initialOwner&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;arcSize=10;shadow=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="420" width="240" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1_4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="step1" target="step4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1_4_l" value="endereço" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#82b366;" parent="e1_4" vertex="1" connectable="0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e3_4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#9673a6;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="step3" target="step4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3_4_l" value="endereço" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#9673a6;" parent="e3_4" vertex="1" connectable="0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e1_5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=0;" parent="1" source="step4" target="step5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1_5_l" value="após Staking" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#666666;" parent="e1_5" vertex="1" connectable="0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="note_parallel" value="Passos 1 e 2 podem ser&lt;br&gt;executados em paralelo&lt;br&gt;(sem dependências mútuas)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#ffffcc;strokeColor=#cccc00;fontSize=10;fontColor=#666666;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="80" width="170" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="note_chainlink" value="&lt;font color=&quot;#660000&quot;&gt;Sepolia ETH/USD:&lt;br&gt;&lt;font size=&quot;1&quot;&gt;0x694AA1769357215DE4FAC081bf1f309aDC325306&lt;/font&gt;&lt;/font&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#ffffcc;strokeColor=#cccc00;fontSize=10;fontColor=#666666;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="260" width="250" height="50" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
