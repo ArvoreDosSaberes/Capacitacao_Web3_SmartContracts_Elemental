@@ -1,3 +1,10 @@
+[![Visits](https://hits.dwyl.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental_ETAPA1.svg?style=flat-square&show=unique)](https://hits.dwyl.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental_ETAPA1)
+![Language: Portuguese](https://img.shields.io/badge/Language-Portuguese-brightgreen.svg)
+![Solidity](https://img.shields.io/badge/Solidity-%5E0.8.20-363636?logo=solidity)
+![Ethereum](https://img.shields.io/badge/Ethereum-Sepolia-3C3C3D?logo=ethereum)
+![Chainlink](https://img.shields.io/badge/Chainlink-Oracle-375BD2?logo=chainlink)
+![Status](https://img.shields.io/badge/Status-Modelagem-brightgreen)
+
 # Etapa 1 – Modelagem
 
 > **Protocolo:** Elemental Protocol  

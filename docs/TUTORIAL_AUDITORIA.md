@@ -1,3 +1,11 @@
+[![Visits](https://hits.dwyl.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental_AUDITORIA.svg?style=flat-square&show=unique)](https://hits.dwyl.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental_AUDITORIA)
+![Language: Portuguese](https://img.shields.io/badge/Language-Portuguese-brightgreen.svg)
+![Solidity](https://img.shields.io/badge/Solidity-%5E0.8.20-363636?logo=solidity)
+![Hardhat](https://img.shields.io/badge/Hardhat-v3.x-FFF100?logo=hardhat)
+![Slither](https://img.shields.io/badge/Slither-Static%20Analysis-1E88E5)
+![Mythril](https://img.shields.io/badge/Mythril-Symbolic%20Analysis-7E57C2)
+![Status](https://img.shields.io/badge/Status-Seguran%C3%A7a-brightgreen)
+
 # Tutorial de Auditoria de Smart Contracts
 
 ## Elemental Protocol — Slither, Mythril & Hardhat
