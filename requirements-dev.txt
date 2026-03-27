@@ -1,0 +1,5 @@
+-r requirements.txt
+
+slither-analyzer==0.11.5
+mythril==0.24.8
+solc-select>=1.0.4
