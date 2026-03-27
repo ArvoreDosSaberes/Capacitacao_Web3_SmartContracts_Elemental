@@ -60,6 +60,8 @@ zip -r "$OUTPUT_FILE" "$PROJECT_NAME" \
   -x "${PROJECT_NAME}/coverage/*" \
   -x "${PROJECT_NAME}/dist/*" \
   -x "${PROJECT_NAME}/bundle/*" \
+  -x "${PROJECT_NAME}/.venv/*" \
+  -x "${PROJECT_NAME}/.venv-mythril/*" \
   -x "${PROJECT_NAME}/*.zip"
 
 echo ""

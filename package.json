@@ -18,6 +18,8 @@
     "test:pricefeed": "hardhat test test/PriceFeed.ts",
     "deploy:local": "hardhat run scripts/deploy.js",
     "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "audit:slither": "bash scripts/run-slither.sh",
+    "audit:mythril": "bash scripts/run-mythril.sh",
     "ignition:local": "hardhat ignition deploy ignition/modules/ElementalProtocol.ts",
     "ignition:sepolia": "hardhat ignition deploy ignition/modules/ElementalProtocol.ts --network sepolia",
     "clean": "hardhat clean"

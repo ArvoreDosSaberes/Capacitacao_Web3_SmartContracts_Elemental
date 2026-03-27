@@ -26,21 +26,20 @@ Este tutorial mostra como executar uma auditoria de segurança nos contratos do 
 
 ## 1. Pré-requisitos
 
-| Ferramenta | Versão mínima | Instalação |
-|------------|---------------|------------|
-| Node.js    | >= 18         | [nodejs.org](https://nodejs.org) |
-| Python     | >= 3.8        | [python.org](https://python.org) |
-| Hardhat    | >= 2.19       | `npm install --save-dev hardhat` |
-| Slither    | >= 0.10       | `pip install slither-analyzer` |
-| Mythril    | >= 0.24       | `pip install mythril` |
-| solc-select| —             | `pip install solc-select` |
+| Ferramenta  | Versão mínima | Instalação                          |
+| ----------- | --------------- | ------------------------------------- |
+| Node.js     | >= 22           | [nodejs.org](https://nodejs.org)         |
+| Python      | >= 3.8          | [python.org](https://python.org)         |
+| Hardhat     | >= 2.19         | `npm install --save-dev hardhat`    |
+| Slither     | >= 0.10         | `bash scripts/setup-python-venv.sh` |
+| Mythril     | >= 0.24         | `bash scripts/setup-mythril-venv.sh` |
+| solc-select | —              | `bash scripts/setup-python-venv.sh` / `bash scripts/setup-mythril-venv.sh` |
 
 ### Instalar o compilador Solidity 0.8.20
 
 As ferramentas de análise precisam do compilador `solc` compatível:
 
 ```bash
-pip install solc-select
 solc-select install 0.8.20
 solc-select use 0.8.20
 ```
@@ -61,6 +60,7 @@ Smartcontracts/
 ```
 
 > **Importante:** antes de prosseguir, garanta que o projeto compila sem erros:
+>
 > ```bash
 > npx hardhat compile
 > ```
@@ -74,7 +74,7 @@ Smartcontracts/
 ### 2.1 Instalação
 
 ```bash
-pip install slither-analyzer
+bash scripts/setup-python-venv.sh
 ```
 
 ### 2.2 Executar análise completa
@@ -87,22 +87,22 @@ slither .
 
 O Slither detecta automaticamente o framework Hardhat, resolve os imports de `@openzeppelin` e `@chainlink` a partir de `node_modules/`, e analisa todos os contratos em `contracts/`.
 
-### 2.3 Analisar um contrato específico
+### 2.3 Analisar o projeto com imports resolvidos corretamente
 
 ```bash
-slither contracts/ElemStaking.sol
+bash scripts/run-slither.sh
 ```
 
 ### 2.4 Saída esperada
 
 O Slither classifica os achados por severidade:
 
-| Cor / Nível | Significado |
-|-------------|-------------|
-| 🔴 **High** | Vulnerabilidade crítica (reentrância, manipulação de estado) |
-| 🟡 **Medium** | Risco moderado (variáveis shadowed, uso de `tx.origin`) |
-| 🟢 **Low** | Boas práticas não seguidas (nomes de variáveis, visibilidade) |
-| ⚪ **Informational** | Sugestões de otimização |
+| Cor / Nível              | Significado                                                      |
+| ------------------------- | ---------------------------------------------------------------- |
+| 🔴**High**          | Vulnerabilidade crítica (reentrância, manipulação de estado) |
+| 🟡**Medium**        | Risco moderado (variáveis shadowed, uso de `tx.origin`)       |
+| 🟢**Low**           | Boas práticas não seguidas (nomes de variáveis, visibilidade) |
+| ⚪**Informational** | Sugestões de otimização                                       |
 
 **Exemplo de saída para o Elemental Protocol:**
 
@@ -171,10 +171,11 @@ slither . --list-detectors
 ### 3.1 Instalação
 
 ```bash
-pip install mythril
+bash scripts/setup-mythril-venv.sh
 ```
 
 > **Alternativa com Docker** (recomendado para evitar conflitos de dependência):
+>
 > ```bash
 > docker pull mythril/myth
 > docker run -v $(pwd):/src mythril/myth analyze /src/contracts/ElemStaking.sol --solv 0.8.20
@@ -185,7 +186,7 @@ pip install mythril
 O Mythril analisa um contrato de cada vez. É necessário informar a versão do Solidity e os remappings:
 
 ```bash
-myth analyze contracts/ElemStaking.sol \
+bash scripts/run-mythril.sh contracts/ElemStaking.sol \
   --solv 0.8.20 \
   --solc-args "--base-path . --include-path node_modules/"
 ```
@@ -197,7 +198,7 @@ for contract in contracts/*.sol; do
   echo "=========================================="
   echo "Analisando: $contract"
   echo "=========================================="
-  myth analyze "$contract" \
+  bash scripts/run-mythril.sh "$contract" \
     --solv 0.8.20 \
     --solc-args "--base-path . --include-path node_modules/" \
     2>&1 | tee -a mythril-report.txt
@@ -206,13 +207,13 @@ done
 
 ### 3.4 Parâmetros importantes
 
-| Parâmetro | Descrição | Exemplo |
-|-----------|-----------|---------|
-| `--solv` | Versão do compilador Solidity | `--solv 0.8.20` |
-| `--execution-timeout` | Tempo máximo de execução (segundos) | `--execution-timeout 300` |
-| `--max-depth` | Profundidade máxima de exploração | `--max-depth 30` |
-| `-o jsonv2` | Saída em JSON v2 | `-o jsonv2` |
-| `--solc-args` | Argumentos para o compilador solc | `--solc-args "--base-path ."` |
+| Parâmetro              | Descrição                            | Exemplo                         |
+| ----------------------- | -------------------------------------- | ------------------------------- |
+| `--solv`              | Versão do compilador Solidity         | `--solv 0.8.20`               |
+| `--execution-timeout` | Tempo máximo de execução (segundos) | `--execution-timeout 300`     |
+| `--max-depth`         | Profundidade máxima de exploração   | `--max-depth 30`              |
+| `-o jsonv2`           | Saída em JSON v2                      | `-o jsonv2`                   |
+| `--solc-args`         | Argumentos para o compilador solc      | `--solc-args "--base-path ."` |
 
 ### 3.5 Saída esperada
 
@@ -233,17 +234,17 @@ Initial State:
 
 **SWCs comuns que podem aparecer no Elemental Protocol:**
 
-| SWC ID | Nome | Contrato provável |
-|--------|------|-------------------|
-| SWC-107 | Reentrancy | ElemNFT (`withdraw`), ElemStaking |
-| SWC-101 | Integer Overflow/Underflow | Mitigado por Solidity ^0.8.20 |
-| SWC-110 | Assert Violation | Qualquer |
-| SWC-115 | Authorization through tx.origin | Nenhum (usa `msg.sender`) |
+| SWC ID  | Nome                            | Contrato provável                  |
+| ------- | ------------------------------- | ----------------------------------- |
+| SWC-107 | Reentrancy                      | ElemNFT (`withdraw`), ElemStaking |
+| SWC-101 | Integer Overflow/Underflow      | Mitigado por Solidity ^0.8.20       |
+| SWC-110 | Assert Violation                | Qualquer                            |
+| SWC-115 | Authorization through tx.origin | Nenhum (usa `msg.sender`)         |
 
 ### 3.6 Gerar relatório em JSON
 
 ```bash
-myth analyze contracts/ElemStaking.sol \
+bash scripts/run-mythril.sh contracts/ElemStaking.sol \
   --solv 0.8.20 \
   --solc-args "--base-path . --include-path node_modules/" \
   -o jsonv2 > mythril-ElemStaking.json
@@ -493,25 +494,25 @@ Abaixo está um **modelo de relatório** que pode ser preenchido com os resultad
 
 #### Resumo Executivo
 
-| Métrica | Valor |
-|---------|-------|
-| Contratos analisados | 5 (ElemToken, ElemNFT, ElemStaking, ElemDAO, PriceFeed) |
-| Linhas de Solidity (total) | ~462 |
-| Versão Solidity | ^0.8.20 |
-| Dependências externas | OpenZeppelin Contracts, Chainlink Contracts |
-| Ferramentas utilizadas | Slither v0.x.x, Mythril v0.x.x, Hardhat + Testes |
+| Métrica                   | Valor                                                   |
+| -------------------------- | ------------------------------------------------------- |
+| Contratos analisados       | 5 (ElemToken, ElemNFT, ElemStaking, ElemDAO, PriceFeed) |
+| Linhas de Solidity (total) | ~462                                                    |
+| Versão Solidity           | ^0.8.20                                                 |
+| Dependências externas     | OpenZeppelin Contracts, Chainlink Contracts             |
+| Ferramentas utilizadas     | Slither v0.x.x, Mythril v0.x.x, Hardhat + Testes        |
 
 ---
 
 #### Achados por Severidade
 
-| Severidade | Quantidade | Descrição resumida |
-|------------|------------|--------------------|
-| 🔴 Crítica | 0 | — |
-| 🟠 Alta | 0 | — |
-| 🟡 Média | _N_ | _Ex: uso de low-level call em withdraw()_ |
-| 🟢 Baixa | _N_ | _Ex: variáveis que poderiam ser immutable_ |
-| ⚪ Informacional | _N_ | _Ex: sugestões de otimização de gas_ |
+| Severidade       | Quantidade | Descrição resumida                          |
+| ---------------- | ---------- | --------------------------------------------- |
+| 🔴 Crítica      | 0          | —                                            |
+| 🟠 Alta          | 0          | —                                            |
+| 🟡 Média        | _N_      | _Ex: uso de low-level call em withdraw()_   |
+| 🟢 Baixa         | _N_      | _Ex: variáveis que poderiam ser immutable_ |
+| ⚪ Informacional | _N_      | _Ex: sugestões de otimização de gas_     |
 
 ---
 
@@ -565,9 +566,9 @@ Abaixo está um **modelo de relatório** que pode ser preenchido com os resultad
 
 #### Resultados dos Testes Automatizados
 
-| Suite | Testes | Passaram | Falharam | Cobertura |
-|-------|--------|----------|----------|-----------|
-| audit.test.js | 12 | 12 | 0 | —% |
+| Suite           | Testes       | Passaram     | Falharam    | Cobertura     |
+| --------------- | ------------ | ------------ | ----------- | ------------- |
+| audit.test.js   | 12           | 12           | 0           | —%           |
 | **Total** | **12** | **12** | **0** | **—%** |
 
 > Executar `npx hardhat coverage` e preencher a coluna de cobertura.
@@ -577,18 +578,19 @@ Abaixo está um **modelo de relatório** que pode ser preenchido com os resultad
 #### Conclusões
 
 1. **Pontos fortes:**
+
    - Uso de `ReentrancyGuard` em `ElemStaking` protege contra reentrância
    - Solidity ^0.8.20 com proteção nativa contra overflow/underflow
    - `Ownable` restringe funções administrativas corretamente
    - `Pausable` em `ElemToken` permite resposta a emergências
    - `SafeERC20` evita problemas com tokens que não retornam `bool`
-
 2. **Pontos de atenção:**
+
    - Verificação de _staleness_ no oráculo Chainlink
    - Votação da DAO vulnerável a flash loans
    - Low-level call no withdraw de NFT (risco aceito)
-
 3. **Recomendações gerais:**
+
    - Aumentar cobertura de testes para ≥ 90%
    - Implementar ERC20Votes para a DAO
    - Adicionar limites de tempo (_timelock_) para ações administrativas críticas
@@ -598,11 +600,11 @@ Abaixo está um **modelo de relatório** que pode ser preenchido com os resultad
 
 #### Assinatura
 
-| | |
-|---|---|
-| **Auditor** | _Nome_ |
-| **Data** | _DD/MM/AAAA_ |
-| **Versão do relatório** | 1.0 |
+|                                 |                |
+| ------------------------------- | -------------- |
+| **Auditor**               | _Nome_       |
+| **Data**                  | _DD/MM/AAAA_ |
+| **Versão do relatório** | 1.0            |
 
 ---
 

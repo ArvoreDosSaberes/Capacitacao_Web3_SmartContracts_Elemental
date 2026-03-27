@@ -1,0 +1,4 @@
+setuptools<82
+
+mythril==0.24.8
+solc-select>=1.0.4

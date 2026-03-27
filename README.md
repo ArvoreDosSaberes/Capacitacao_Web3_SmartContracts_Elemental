@@ -114,13 +114,15 @@ python3 -m http.server 8080
 ### Auditoria
 
 ```bash
-# Slither
-pip install slither-analyzer
-slither contracts/
+# Instalar dependências Python do projeto (Slither + utilitários compartilhados)
+bash scripts/setup-python-venv.sh
 
-# Mythril
-pip install mythril
-myth analyze contracts/ElemStaking.sol --solv 0.8.20
+# Slither (executa a análise a partir da raiz do projeto)
+npm run audit:slither
+
+# Mythril (ambiente separado)
+bash scripts/setup-mythril-venv.sh
+npm run audit:mythril -- contracts/ElemStaking.sol --solv 0.8.20
 ```
 
 ## Licença
