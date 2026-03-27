@@ -112,7 +112,8 @@ O diagrama mostra o fluxo completo de chamadas entre o usuário e os contratos:
 | `scripts/` | `deploy.js` (Hardhat) e `generate_nfts.py` (gerador pixel art) |
 | `tests/` | Testes unitários e de integração |
 | `ui/` | Interface Web — `index.html`, `css/style.css`, `js/app.js` |
-| `img/` | 10 GIFs pixel art para os NFTs |
+| `NFT/` | 10 GIFs pixel art para os NFTs |
+| `ui/imgs/nft/` | Thumbnails dos NFTs para o FrontEnd |
 | `docs/` | Documentação, enunciado original (PDF + MD) |
 | `docs/diagrams/` | Diagramas draw.io da arquitetura |
 | `docs/ETAPA_1.md` | Este documento (Modelagem) |

@@ -74,16 +74,16 @@ const ABI = {
 // NFT Metadata
 // ============================================================
 const NFT_META = [
-    { id: 0,  name: "Fire Elemental",   img: "../img/nft_01_fire_elemental.gif",   thumb: "../img/thumbs/nft_01_fire_elemental_thumb.gif"   },
-    { id: 1,  name: "Water Spirit",      img: "../img/nft_02_water_spirit.gif",     thumb: "../img/thumbs/nft_02_water_spirit_thumb.gif"     },
-    { id: 2,  name: "Earth Golem",       img: "../img/nft_03_earth_golem.gif",      thumb: "../img/thumbs/nft_03_earth_golem_thumb.gif"      },
-    { id: 3,  name: "Lightning Bolt",    img: "../img/nft_04_lightning_bolt.gif",    thumb: "../img/thumbs/nft_04_lightning_bolt_thumb.gif"    },
-    { id: 4,  name: "Shadow Phantom",    img: "../img/nft_05_shadow_phantom.gif",   thumb: "../img/thumbs/nft_05_shadow_phantom_thumb.gif"   },
-    { id: 5,  name: "Crystal Gem",       img: "../img/nft_06_crystal_gem.gif",      thumb: "../img/thumbs/nft_06_crystal_gem_thumb.gif"      },
-    { id: 6,  name: "Solar Flare",       img: "../img/nft_07_solar_flare.gif",      thumb: "../img/thumbs/nft_07_solar_flare_thumb.gif"      },
-    { id: 7,  name: "Toxic Slime",       img: "../img/nft_08_toxic_slime.gif",      thumb: "../img/thumbs/nft_08_toxic_slime_thumb.gif"      },
-    { id: 8,  name: "Frost Shard",       img: "../img/nft_09_frost_shard.gif",      thumb: "../img/thumbs/nft_09_frost_shard_thumb.gif"      },
-    { id: 9,  name: "Magma Core",        img: "../img/nft_10_magma_core.gif",       thumb: "../img/thumbs/nft_10_magma_core_thumb.gif"       },
+    { id: 0,  name: "Fire Elemental",   img: "../NFT/nft_01_fire_elemental.gif",   thumb: "imgs/nft/nft_01_fire_elemental_thumb.png"   },
+    { id: 1,  name: "Water Spirit",      img: "../NFT/nft_02_water_spirit.gif",     thumb: "imgs/nft/nft_02_water_spirit_thumb.png"     },
+    { id: 2,  name: "Earth Golem",       img: "../NFT/nft_03_earth_golem.gif",      thumb: "imgs/nft/nft_03_earth_golem_thumb.png"      },
+    { id: 3,  name: "Lightning Bolt",    img: "../NFT/nft_04_lightning_bolt.gif",    thumb: "imgs/nft/nft_04_lightning_bolt_thumb.png"    },
+    { id: 4,  name: "Shadow Phantom",    img: "../NFT/nft_05_shadow_phantom.gif",   thumb: "imgs/nft/nft_05_shadow_phantom_thumb.png"   },
+    { id: 5,  name: "Crystal Gem",       img: "../NFT/nft_06_crystal_gem.gif",      thumb: "imgs/nft/nft_06_crystal_gem_thumb.png"      },
+    { id: 6,  name: "Solar Flare",       img: "../NFT/nft_07_solar_flare.gif",      thumb: "imgs/nft/nft_07_solar_flare_thumb.png"      },
+    { id: 7,  name: "Toxic Slime",       img: "../NFT/nft_08_toxic_slime.gif",      thumb: "imgs/nft/nft_08_toxic_slime_thumb.png"      },
+    { id: 8,  name: "Frost Shard",       img: "../NFT/nft_09_frost_shard.gif",      thumb: "imgs/nft/nft_09_frost_shard_thumb.png"      },
+    { id: 9,  name: "Magma Core",        img: "../NFT/nft_10_magma_core.gif",       thumb: "imgs/nft/nft_10_magma_core_thumb.png"       },
 ];
 
 // ============================================================

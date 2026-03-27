@@ -28,7 +28,8 @@ contracts/
 └── PriceFeed.sol      – Wrapper Chainlink ETH/USD
 
 ui/                    – Interface web (HTML + ethers.js puro)
-img/                   – 10 GIFs pixel art para NFTs
+NFT/                   – 10 GIFs pixel art para NFTs
+ui/imgs/nft/           – Thumbnails dos NFTs para o FrontEnd
 scripts/               – Scripts de deploy e geração de NFTs
 docs/                  – Documentação e enunciado original
 ```

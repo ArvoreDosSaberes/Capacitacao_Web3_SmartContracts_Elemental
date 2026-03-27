@@ -37,7 +37,7 @@ Criar um ecossistema gamificado onde:
 - **Padrão:** ERC-721 (OpenZeppelin)
 - **Nome:** Elemental Creatures
 - **Símbolo:** ECRAFT
-- **Supply máximo:** 10 NFTs (coleção fixa — pixel art na pasta `img/`)
+- **Supply máximo:** 10 NFTs (coleção fixa — pixel art na pasta `NFT/`)
 - **Funcionalidades:**
   - Mint público (preço em ELEM ou ETH)
   - Metadata URI (on-chain ou IPFS)
@@ -100,10 +100,14 @@ Smartcontracts/
 │   │       ├── ElemStaking.json
 │   │       └── ElemDAO.json
 │   └── assets/
-├── img/                  # GIFs pixel art para NFTs
+├── NFT/                  # GIFs pixel art para NFTs
 │   ├── nft_01_fire_elemental.gif
 │   ├── ...
 │   └── nft_10_magma_core.gif
+├── ui/imgs/nft/          # Thumbnails dos NFTs para o FrontEnd
+│   ├── nft_01_fire_elemental_thumb.png
+│   ├── ...
+│   └── nft_10_magma_core_thumb.png
 ├── docs/                 # Documentação e PDF original
 │   ├── Nível Avançado - ... .pdf
 │   └── Nível Avançado - ... .md

@@ -4,11 +4,12 @@ import os
 import random
 from PIL import Image, ImageDraw, ImageFont
 
-OUTDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "img")
+PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+OUTDIR = os.path.join(PROJECT_ROOT, "NFT")
 OUTDIR = os.path.normpath(OUTDIR)
 os.makedirs(OUTDIR, exist_ok=True)
 
-THUMBDIR = os.path.join(OUTDIR, "thumbs")
+THUMBDIR = os.path.join(PROJECT_ROOT, "ui", "imgs", "nft")
 os.makedirs(THUMBDIR, exist_ok=True)
 THUMB_SIZE = (64, 64)
 
@@ -187,34 +188,15 @@ def generate_gif(index):
 
 
 def generate_thumbnail(index):
-    """Generate a 64x64 animated GIF thumbnail from the full-size NFT GIF."""
+    """Generate a 64x64 PNG thumbnail from the full-size NFT GIF."""
     name = NAMES[index]
     src_path = os.path.join(OUTDIR, f"nft_{index+1:02d}_{name}.gif")
-    thumb_path = os.path.join(THUMBDIR, f"nft_{index+1:02d}_{name}_thumb.gif")
+    thumb_path = os.path.join(THUMBDIR, f"nft_{index+1:02d}_{name}_thumb.png")
 
     src = Image.open(src_path)
-    thumb_frames = []
-    durations = []
-
-    try:
-        while True:
-            frame = src.copy().convert("RGB")
-            frame = frame.resize(THUMB_SIZE, Image.NEAREST)
-            thumb_frames.append(frame)
-            durations.append(src.info.get("duration", DURATION))
-            src.seek(src.tell() + 1)
-    except EOFError:
-        pass
-
-    if thumb_frames:
-        thumb_frames[0].save(
-            thumb_path,
-            save_all=True,
-            append_images=thumb_frames[1:],
-            duration=durations,
-            loop=0,
-            optimize=True,
-        )
+    frame = src.copy().convert("RGB")
+    frame = frame.resize(THUMB_SIZE, Image.NEAREST)
+    frame.save(thumb_path, format="PNG", optimize=True)
     print(f"  ✔ thumb {thumb_path}")
 
 
