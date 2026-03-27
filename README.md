@@ -15,6 +15,8 @@
 
 Protocolo descentralizado que combina Token ERC-20, NFT ERC-721 (pixel art), Staking com recompensas ajustadas por oráculo Chainlink, e DAO simplificada — deployado em testnet Ethereum (Sepolia).
 
+## Prazo de Entrega: *12 de abril de 2026 23:59*
+
 ## Arquitetura
 
 ```text
