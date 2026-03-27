@@ -1,4 +1,4 @@
-[![License: MIT](https://img.shields.io/github/license/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado?style=flat-square)](https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado/blob/main/LICENSE)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Last Commit](https://img.shields.io/github/last-commit/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado?style=flat-square)](https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado/commits/main)
 [![Stars](https://img.shields.io/github/stars/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado?style=flat-square)](https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado/stargazers)
 [![Forks](https://img.shields.io/github/forks/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado?style=flat-square)](https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Avancado/network/members)
@@ -122,5 +122,6 @@ myth analyze contracts/ElemStaking.sol --solv 0.8.20
 
 ## Licença
 
-MIT
-# Capacitacao_Web3_SmartContracts_Avancado
+Este projeto está licenciado sob a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
