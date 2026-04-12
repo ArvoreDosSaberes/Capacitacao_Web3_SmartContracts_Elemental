@@ -7,11 +7,11 @@
 // Contract addresses – atualizar após deploy em Sepolia
 // ============================================================
 const ADDRESSES = {
-    ElemToken:   "0x0000000000000000000000000000000000000000",
-    ElemNFT:     "0x0000000000000000000000000000000000000000",
-    ElemStaking: "0x0000000000000000000000000000000000000000",
-    ElemDAO:     "0x0000000000000000000000000000000000000000",
-    PriceFeed:   "0x0000000000000000000000000000000000000000",
+    ElemToken:   "0x54f40dd929A41E8c3aC858b426058298Fee94663",
+    ElemNFT:     "0x910311e288AB3303d1b279b42e9C81BD1b40Fd7A",
+    ElemStaking: "0xBAfaFBFcdDF337bf6Dce76182FaEB375505114BF",
+    ElemDAO:     "0xB0414B2A82cD6BD9AfE643d8892e04D697c072a6",
+    PriceFeed:   "0x359ea7Fc304DA0B02FfDA71c409db79A7371CB1E",
 };
 
 // ============================================================
@@ -74,16 +74,16 @@ const ABI = {
 // NFT Metadata
 // ============================================================
 const NFT_META = [
-    { id: 0,  name: "Fire Elemental",   img: "../NFT/nft_01_fire_elemental.gif",   thumb: "imgs/nft/nft_01_fire_elemental_thumb.png"   },
-    { id: 1,  name: "Water Spirit",      img: "../NFT/nft_02_water_spirit.gif",     thumb: "imgs/nft/nft_02_water_spirit_thumb.png"     },
-    { id: 2,  name: "Earth Golem",       img: "../NFT/nft_03_earth_golem.gif",      thumb: "imgs/nft/nft_03_earth_golem_thumb.png"      },
-    { id: 3,  name: "Lightning Bolt",    img: "../NFT/nft_04_lightning_bolt.gif",    thumb: "imgs/nft/nft_04_lightning_bolt_thumb.png"    },
-    { id: 4,  name: "Shadow Phantom",    img: "../NFT/nft_05_shadow_phantom.gif",   thumb: "imgs/nft/nft_05_shadow_phantom_thumb.png"   },
-    { id: 5,  name: "Crystal Gem",       img: "../NFT/nft_06_crystal_gem.gif",      thumb: "imgs/nft/nft_06_crystal_gem_thumb.png"      },
-    { id: 6,  name: "Solar Flare",       img: "../NFT/nft_07_solar_flare.gif",      thumb: "imgs/nft/nft_07_solar_flare_thumb.png"      },
-    { id: 7,  name: "Toxic Slime",       img: "../NFT/nft_08_toxic_slime.gif",      thumb: "imgs/nft/nft_08_toxic_slime_thumb.png"      },
-    { id: 8,  name: "Frost Shard",       img: "../NFT/nft_09_frost_shard.gif",      thumb: "imgs/nft/nft_09_frost_shard_thumb.png"      },
-    { id: 9,  name: "Magma Core",        img: "../NFT/nft_10_magma_core.gif",       thumb: "imgs/nft/nft_10_magma_core_thumb.png"       },
+    { id: 0,  name: "Fire Elemental",   img: "/NFT/nft_01_fire_elemental.gif",   thumb: "imgs/nft/nft_01_fire_elemental_thumb.png"   },
+    { id: 1,  name: "Water Spirit",      img: "/NFT/nft_02_water_spirit.gif",     thumb: "imgs/nft/nft_02_water_spirit_thumb.png"     },
+    { id: 2,  name: "Earth Golem",       img: "/NFT/nft_03_earth_golem.gif",      thumb: "imgs/nft/nft_03_earth_golem_thumb.png"      },
+    { id: 3,  name: "Lightning Bolt",    img: "/NFT/nft_04_lightning_bolt.gif",    thumb: "imgs/nft/nft_04_lightning_bolt_thumb.png"    },
+    { id: 4,  name: "Shadow Phantom",    img: "/NFT/nft_05_shadow_phantom.gif",   thumb: "imgs/nft/nft_05_shadow_phantom_thumb.png"   },
+    { id: 5,  name: "Crystal Gem",       img: "/NFT/nft_06_crystal_gem.gif",      thumb: "imgs/nft/nft_06_crystal_gem_thumb.png"      },
+    { id: 6,  name: "Solar Flare",       img: "/NFT/nft_07_solar_flare.gif",      thumb: "imgs/nft/nft_07_solar_flare_thumb.png"      },
+    { id: 7,  name: "Toxic Slime",       img: "/NFT/nft_08_toxic_slime.gif",      thumb: "imgs/nft/nft_08_toxic_slime_thumb.png"      },
+    { id: 8,  name: "Frost Shard",       img: "/NFT/nft_09_frost_shard.gif",      thumb: "imgs/nft/nft_09_frost_shard_thumb.png"      },
+    { id: 9,  name: "Magma Core",        img: "/NFT/nft_10_magma_core.gif",       thumb: "imgs/nft/nft_10_magma_core_thumb.png"       },
 ];
 
 // ============================================================
@@ -372,6 +372,12 @@ async function mintNFT(tokenId, price) {
 }
 
 async function stakeTokens() {
+    // Check if wallet is connected and contracts are initialized
+    if (!signer || !userAddress || !contracts.token) {
+        toast("Conecte sua carteira primeiro.", "error");
+        return;
+    }
+    
     const amount = $("#stake-amount").value;
     if (!amount || parseFloat(amount) <= 0) {
         toast("Informe uma quantidade válida.", "error");
@@ -399,6 +405,12 @@ async function stakeTokens() {
 }
 
 async function unstakeTokens() {
+    // Check if wallet is connected and contracts are initialized
+    if (!signer || !userAddress || !contracts.staking) {
+        toast("Conecte sua carteira primeiro.", "error");
+        return;
+    }
+    
     const amount = $("#stake-amount").value;
     if (!amount || parseFloat(amount) <= 0) {
         toast("Informe uma quantidade válida.", "error");
@@ -419,15 +431,34 @@ async function unstakeTokens() {
 }
 
 async function claimRewards() {
+    // Check if wallet is connected and contracts are initialized
+    if (!signer || !userAddress || !contracts.staking) {
+        toast("Conecte sua carteira primeiro.", "error");
+        return;
+    }
+    
     try {
-        toast("Coletando recompensas…", "info");
+        // First check if there are pending rewards
+        const pending = await contracts.staking.pendingReward(userAddress);
+        const pendingFormatted = parseFloat(ethers.utils.formatEther(pending)).toFixed(6);
+        
+        if (pending.eq(0)) {
+            toast("Você não tem recompensas pendentes. Faça staking para começar a acumular recompensas.", "warning");
+            return;
+        }
+        
+        toast(`Coletando ${pendingFormatted} ELEM em recompensas...`, "info");
         const tx = await contracts.staking.claimReward();
         await tx.wait();
-        toast("Recompensas coletadas!", "success");
+        toast(`${pendingFormatted} ELEM coletados com sucesso!`, "success");
         await refreshAll();
     } catch (err) {
         console.error(err);
-        toast("Erro ao coletar: " + (err.reason || err.message), "error");
+        if (err.reason && err.reason.includes("no rewards")) {
+            toast("Você não tem recompensas disponíveis para coletar.", "warning");
+        } else {
+            toast("Erro ao coletar: " + (err.reason || err.message), "error");
+        }
     }
 }
 
