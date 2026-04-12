@@ -41,15 +41,15 @@ docs/                  – Documentação e enunciado original
 
 ## Contratos Deployados (Sepolia)
 
-| Contrato    | Endereço | Explorer |
-| ----------- | --------- | -------- |
-| ElemToken   | `0x...` | [link]()    |
-| ElemNFT     | `0x...` | [link]()    |
-| ElemStaking | `0x...` | [link]()    |
-| ElemDAO     | `0x...` | [link]()    |
-| PriceFeed   | `0x...` | [link]()    |
+| Contrato    | Endereço                                  | Explorer                                                                             |
+| ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------ |
+| ElemToken   | 0x54f40dd929A41E8c3aC858b426058298Fee94663 | [Etherscan](https://sepolia.etherscan.io/address/0x54f40dd929A41E8c3aC858b426058298Fee94663) |
+| ElemNFT     | 0x910311e288AB3303d1b279b42e9C81BD1b40Fd7A | [Etherscan](https://sepolia.etherscan.io/address/0x910311e288AB3303d1b279b42e9C81BD1b40Fd7A) |
+| ElemStaking | 0xBAfaFBFcdDF337bf6Dce76182FaEB375505114BF | [Etherscan](https://sepolia.etherscan.io/address/0xBAfaFBFcdDF337bf6Dce76182FaEB375505114BF) |
+| ElemDAO     | 0xB0414B2A82cD6BD9AfE643d8892e04D697c072a6 | [Etherscan](https://sepolia.etherscan.io/address/0xB0414B2A82cD6BD9AfE643d8892e04D697c072a6) |
+| PriceFeed   | 0x359ea7Fc304DA0B02FfDA71c409db79A7371CB1E | [Etherscan](https://sepolia.etherscan.io/address/0x359ea7Fc304DA0B02FfDA71c409db79A7371CB1E) |
 
-> Atualizar após deploy.
+> **Deploy realizado em 11/04/2026 na Sepolia Testnet**
 
 ## Pré-requisitos
 
