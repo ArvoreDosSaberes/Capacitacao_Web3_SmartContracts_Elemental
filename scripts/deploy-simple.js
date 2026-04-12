@@ -2,6 +2,7 @@
  * Script de deploy simplificado para Sepolia usando ethers.js
  */
 
+require('dotenv').config();
 const { ethers } = require("ethers");
 
 async function main() {
@@ -14,7 +15,15 @@ async function main() {
   }
 
   const provider = new ethers.JsonRpcProvider(RPC_URL);
-  const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+  let wallet;
+  
+  // Verificar se PRIVATE_KEY é uma mnemonic phrase ou uma chave privada hex
+  if (PRIVATE_KEY.startsWith('0x')) {
+    wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+  } else {
+    // Assumir que é uma mnemonic phrase
+    wallet = ethers.Wallet.fromPhrase(PRIVATE_KEY, provider);
+  }
 
   console.log("Deploying contracts with:", wallet.address);
   
@@ -28,10 +37,10 @@ async function main() {
   try {
     // 1. Deploy ElemToken
     console.log("Deploying ElemToken...");
-    const elemTokenArtifact = require(`${artifactsPath}/ElemToken.json`);
+    const elemTokenArtifact = require(`${artifactsPath}/contracts/ElemToken.sol/ElemToken.json`);
     const elemTokenFactory = new ethers.ContractFactory(
       elemTokenArtifact.abi,
-      elemTokenArtifact.data.bytecode.object,
+      elemTokenArtifact.bytecode,
       wallet
     );
     const elemToken = await elemTokenFactory.deploy(wallet.address);
@@ -41,10 +50,10 @@ async function main() {
 
     // 2. Deploy ElemNFT
     console.log("Deploying ElemNFT...");
-    const elemNFTArtifact = require(`${artifactsPath}/ElemNFT.json`);
+    const elemNFTArtifact = require(`${artifactsPath}/contracts/ElemNFT.sol/ElemNFT.json`);
     const elemNFTFactory = new ethers.ContractFactory(
       elemNFTArtifact.abi,
-      elemNFTArtifact.data.bytecode.object,
+      elemNFTArtifact.bytecode,
       wallet
     );
     const elemNFT = await elemNFTFactory.deploy(wallet.address);
@@ -55,10 +64,10 @@ async function main() {
     // 3. Deploy PriceFeed
     console.log("Deploying PriceFeed...");
     const chainlinkFeedAddress = "0x694AA1769357215DE4FAC081bf1f309aDC325306";
-    const priceFeedArtifact = require(`${artifactsPath}/PriceFeed.json`);
+    const priceFeedArtifact = require(`${artifactsPath}/contracts/PriceFeed.sol/PriceFeed.json`);
     const priceFeedFactory = new ethers.ContractFactory(
       priceFeedArtifact.abi,
-      priceFeedArtifact.data.bytecode.object,
+      priceFeedArtifact.bytecode,
       wallet
     );
     const priceFeed = await priceFeedFactory.deploy(chainlinkFeedAddress, wallet.address);
@@ -68,10 +77,10 @@ async function main() {
 
     // 4. Deploy ElemStaking
     console.log("Deploying ElemStaking...");
-    const elemStakingArtifact = require(`${artifactsPath}/ElemStaking.json`);
+    const elemStakingArtifact = require(`${artifactsPath}/contracts/ElemStaking.sol/ElemStaking.json`);
     const elemStakingFactory = new ethers.ContractFactory(
       elemStakingArtifact.abi,
-      elemStakingArtifact.data.bytecode.object,
+      elemStakingArtifact.bytecode,
       wallet
     );
     const elemStaking = await elemStakingFactory.deploy(elemTokenAddress, priceFeedAddress, wallet.address);
@@ -81,10 +90,10 @@ async function main() {
 
     // 5. Deploy ElemDAO
     console.log("Deploying ElemDAO...");
-    const elemDAOArtifact = require(`${artifactsPath}/ElemDAO.json`);
+    const elemDAOArtifact = require(`${artifactsPath}/contracts/ElemDAO.sol/ElemDAO.json`);
     const elemDAOFactory = new ethers.ContractFactory(
       elemDAOArtifact.abi,
-      elemDAOArtifact.data.bytecode.object,
+      elemDAOArtifact.bytecode,
       wallet
     );
     const elemDAO = await elemDAOFactory.deploy(elemTokenAddress, wallet.address);
@@ -94,10 +103,10 @@ async function main() {
 
     // 6. Deploy MockAggregator
     console.log("Deploying MockAggregator...");
-    const mockAggregatorArtifact = require(`${artifactsPath}/MockAggregator.json`);
+    const mockAggregatorArtifact = require(`${artifactsPath}/contracts/mocks/MockAggregator.sol/MockAggregator.json`);
     const mockAggregatorFactory = new ethers.ContractFactory(
       mockAggregatorArtifact.abi,
-      mockAggregatorArtifact.data.bytecode.object,
+      mockAggregatorArtifact.bytecode,
       wallet
     );
     const mockAggregator = await mockAggregatorFactory.deploy(200000000000, 8); // $2,000 USD with 8 decimals

@@ -6,7 +6,7 @@
 **Descrição:** Protocolo descentralizado completo com Token ERC-20, NFT ERC-721, Staking com oráculo e DAO simplificada
 **Repositório GitHub:** https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental
 **Linguagem:** Solidity ^0.8.20
-**Data de Geração:** 10 de abril de 2026
+**Data de Geração:** 12 de abril de 2026
 **Total de Contratos:** 6
 
 ## 1. Arquitetura do Sistema
@@ -44,7 +44,7 @@ Todos os contratos foram implantados com o proprietário (Owner): 0xcEF96AEee732
 **Características:**
 
 - **Nome:** Elemental Token
-- **Endereço:** 0x698b0E159EAc4529AE3Efae4ff2Fc3c4199e33ad
+- **Endereço:** 0xd8347173AF4D69Ae63ECfE4FF73C12fE349ed44e
 - **Símbolo:** ELEM
 - **Supply Máximo:** 1.000.000 tokens
 - **Decimais:** 18
@@ -68,7 +68,7 @@ Todos os contratos foram implantados com o proprietário (Owner): 0xcEF96AEee732
 **Características:**
 
 - **Nome:** Elemental Creatures
-- **Endereço:** 0xa42e84d982c3ad4D93EDC10F3EBCE575a39E1E45
+- **Endereço:** 0x25e814A250a3C6a576e1F8e766328CC3C5B4fF89
 - **Símbolo:** ECRAFT
 - **Supply Máximo:** 10 NFTs únicos
 - **Preço de Mint:** 0.01 ETH (configurável)
@@ -99,9 +99,88 @@ Todos os contratos foram implantados com o proprietário (Owner): 0xcEF96AEee732
 - Controle de preços
 - Saque seguro de ETH acumulado
 
+### 2.2.1 IPFS e Metadados dos NFTs
+
+**Infraestrutura IPFS:**
+
+- **Gateway Pinata:** https://fuchsia-bright-ferret-822.mypinata.cloud/ipfs/
+- **Storage:** Arquivos de imagem e metadados armazenados em IPFS
+- **Persistência:** Dados pinned permanentemente via Pinata
+- **Acesso:** Múltiplos gateways para redundância
+
+**Disponibilidade dos NFTs:**
+
+Os 10 NFTs das Elemental Creatures estão disponíveis através do gateway Pinata com os seguintes recursos:
+
+**Arquivos de Imagem:**
+- **Formato:** GIF animados (pixel art)
+- **Resolução:** 64x64 pixels (versão NFT) e alta resolução (versão para download)
+- **Localização:** `/NFT/` no repositório e IPFS
+- **Acesso:** Via gateway Pinata e gateways públicos IPFS
+
+**Metadados Estruturados:**
+```json
+{
+  "name": "Fire Elemental",
+  "description": "Uma criatura elemental de fogo com poderes destrutivos",
+  "image": "https://fuchsia-bright-ferret-822.mypinata.cloud/ipfs/QmHash...",
+  "attributes": [
+    {
+      "trait_type": "Element",
+      "value": "Fire"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Legendary"
+    },
+    {
+      "trait_type": "Power",
+      "value": 95
+    }
+  ],
+  "external_url": "https://elemental-creatures.com"
+}
+```
+
+**Gateway de Acesso Público:**
+
+O gateway Pinata configurado para o projeto oferece:
+- **URL Base:** https://fuchsia-bright-ferret-822.mypinata.cloud/ipfs/
+- **Performance:** CDN integrado para acesso rápido
+- **Disponibilidade:** 99.9% uptime garantido
+- **Redundância:** Múltiplos gateways fallback
+
+**Gateways Alternativos:**
+- https://ipfs.io/ipfs/
+- https://gateway.pinata.cloud/ipfs/
+- https://cloudflare-ipfs.com/ipfs/
+
+**Integração com Smart Contracts:**
+
+O contrato ElemNFT implementa funções específicas para IPFS:
+- `getIPFSMetadata(uint256 tokenId)` - Retorna hashes IPFS
+- `getHighResDownloadURL(uint256 tokenId)` - URL para download em alta resolução
+- `hasIPFSMetadata(uint256 tokenId)` - Verificação de metadados disponíveis
+
+**Processo de Upload IPFS:**
+
+1. **Preparação:** Imagens e metadados formatados
+2. **Upload:** Via API Pinata ou CLI IPFS
+3. **Pinning:** Permanência garantida via Pinata
+4. **Registro:** Hashes armazenados no smart contract
+5. **Verificação:** Acesso testado via múltiplos gateways
+
+**Benefícios da Arquitetura IPFS:**
+
+- **Descentralização:** Sem dependência de servidor central
+- **Persistência:** Dados permanentes após pinning
+- **Performance:** CDN e cache para acesso rápido
+- **Padrão:** Compatível com padrões NFT (ERC-721)
+- **Escalabilidade:** Suporte para milhares de NFTs
+
 ### 2.3 ElemStaking - Sistema de Staking Inteligente
 
-- **Address:** 0x3A44a68870bc18FC1DD7a77C261d9558598539cF
+- **Address:** 0xd20379FA2B0c4F787983A72895707789e395AC06
 
 **Características Inovadoras:**
 
@@ -144,7 +223,7 @@ Taxa Ajustada = Taxa Base × (Preço Referência / Preço Atual)
 
 **Parâmetros de Governança:**
 
-- **Endereço:** 0xd30BA53B9e7Cae9C0dc876A69EECA55f397c6E39
+- **Endereço:** 0x585e25acf2200aDA4736CdCd9F3128fA072f615D
 - **Período de Votação:** 3 dias (configurável)
 - **Quórum Mínimo:** 10% do supply total
 - **Peso de Voto:** Proporcional ao saldo de ELEM
@@ -175,7 +254,7 @@ Taxa Ajustada = Taxa Base × (Preço Referência / Preço Atual)
 
 **Características:**
 
-- **Endereço:** 0x333E34B317Bf21e0a3C17FCE43ac169aBddd7A63
+- **Endereço:** 0x3e59BfD48799217eA7c1b5cCE25b920C6E791fcC
 - Integração com Chainlink Price Feed
 - Preço ETH/USD com 8 decimais
 - Preço fallback: $2.000 USD
@@ -199,7 +278,7 @@ Taxa Ajustada = Taxa Base × (Preço Referência / Preço Atual)
 
 **Características:**
 
-- **Endereço:** 0xD71c94475ff91c8BF74BEc1b54Dc991Df7143DFc
+- **Endereço:** 0x1213CF45bE0811a4fac2A72c30F3649710B6764b
 - Mock do Chainlink Aggregator para testes
 - Preço configurável manualmente
 - Simulação de cenários de teste
@@ -369,23 +448,23 @@ Taxa Ajustada = Taxa Base × (Preço Referência / Preço Atual)
 
 ### 5.2 Endereços dos Contratos e Dados de Implantação
 
-#### Endereços Após Deploy (Atualizado - 11/04/2026)
+#### Endereços Após Deploy (Atualizado - 12/04/2026)
 
 | Contrato    | Endereço                                  | Explorer                                                                             |
 | ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------ |
-| ElemToken   | 0x54f40dd929A41E8c3aC858b426058298Fee94663 | [Etherscan](https://sepolia.etherscan.io/address/0x54f40dd929A41E8c3aC858b426058298Fee94663) |
-| ElemNFT     | 0x910311e288AB3303d1b279b42e9C81BD1b40Fd7A | [Etherscan](https://sepolia.etherscan.io/address/0x910311e288AB3303d1b279b42e9C81BD1b40Fd7A) |
-| ElemStaking | 0xBAfaFBFcdDF337bf6Dce76182FaEB375505114BF | [Etherscan](https://sepolia.etherscan.io/address/0xBAfaFBFcdDF337bf6Dce76182FaEB375505114BF) |
-| ElemDAO     | 0xB0414B2A82cD6BD9AfE643d8892e04D697c072a6 | [Etherscan](https://sepolia.etherscan.io/address/0xB0414B2A82cD6BD9AfE643d8892e04D697c072a6) |
-| PriceFeed   | 0x359ea7Fc304DA0B02FfDA71c409db79A7371CB1E | [Etherscan](https://sepolia.etherscan.io/address/0x359ea7Fc304DA0B02FfDA71c409db79A7371CB1E) |
-| MockAggregator | 0x7FD2f583491e0bac5D137Ef2D77392D2932BFFc6 | [Etherscan](https://sepolia.etherscan.io/address/0x7FD2f583491e0bac5D137Ef2D77392D2932BFFc6) |
+| ElemToken   | 0xd8347173AF4D69Ae63ECfE4FF73C12fE349ed44e | [Etherscan](https://sepolia.etherscan.io/address/0xd8347173AF4D69Ae63ECfE4FF73C12fE349ed44e) |
+| ElemNFT     | 0x25e814A250a3C6a576e1F8e766328CC3C5B4fF89 | [Etherscan](https://sepolia.etherscan.io/address/0x25e814A250a3C6a576e1F8e766328CC3C5B4fF89) |
+| ElemStaking | 0xd20379FA2B0c4F787983A72895707789e395AC06 | [Etherscan](https://sepolia.etherscan.io/address/0xd20379FA2B0c4F787983A72895707789e395AC06) |
+| ElemDAO     | 0x585e25acf2200aDA4736CdCd9F3128fA072f615D | [Etherscan](https://sepolia.etherscan.io/address/0x585e25acf2200aDA4736CdCd9F3128fA072f615D) |
+| PriceFeed   | 0x3e59BfD48799217eA7c1b5cCE25b920C6E791fcC | [Etherscan](https://sepolia.etherscan.io/address/0x3e59BfD48799217eA7c1b5cCE25b920C6E791fcC) |
+| MockAggregator | 0x1213CF45bE0811a4fac2A72c30F3649710B6764b | [Etherscan](https://sepolia.etherscan.io/address/0x1213CF45bE0811a4fac2A72c30F3649710B6764b) |
 
 **Deployer:** 0xcEF96AEee7322F10e3024cbCb7b3b9388d965392  
 **Rede:** Sepolia Testnet  
-**Data:** 11 de Abril de 2026  
+**Data:** 12 de Abril de 2026  
 **Método:** Deploy via ethers.js (scripts personalizados)  
 **Status:** Correções de segurança aplicadas antes do deploy  
-**Custo Total:** ~0.001 ETH em taxas de deploy
+**Custo Total:** ~0.002 ETH em taxas de deploy
 
 #### Dados Necessários para Implantação
 
@@ -588,7 +667,7 @@ O protocolo serve como excelente base para evolução futura, podendo incorporar
 
 ---
 
-**Data do Relatório:** 10 de abril de 2026
+**Data do Relatório:** 12 de abril de 2026
 **Autor:** Projeto Elemental Protocol
 **Versão:** 1.0
 **Gerado por:** script generate-report.sh

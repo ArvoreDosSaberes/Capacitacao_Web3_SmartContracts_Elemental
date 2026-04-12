@@ -15,6 +15,17 @@ contract ElemNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     uint256 public mintPrice = 0.01 ether;
     uint256 private _nextTokenId;
 
+    // Estrutura para metadados IPFS
+    struct IPFSMetadata {
+        string imageHash;        // Hash da imagem principal (GIF)
+        string highResHash;     // Hash da versão de alta resolução (PNG)
+        string metadataHash;    // Hash do JSON de metadados completo
+        uint256 timestamp;      // Timestamp do upload
+    }
+
+    // Mapeamento de tokenId para metadados IPFS
+    mapping(uint256 => IPFSMetadata) public ipfsMetadata;
+
     string[10] private _tokenNames = [
         "Fire Elemental",
         "Water Spirit",
@@ -29,6 +40,7 @@ contract ElemNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     ];
 
     event NFTMinted(address indexed to, uint256 indexed tokenId, string name);
+    event IPFSMetadataUpdated(uint256 indexed tokenId, string imageHash, string highResHash, string metadataHash);
 
     constructor(address initialOwner)
         ERC721("Elemental Creatures", "ECRAFT")
@@ -53,6 +65,66 @@ contract ElemNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     function creatureName(uint256 tokenId) external view returns (string memory) {
         require(tokenId < MAX_SUPPLY, "ElemNFT: invalid tokenId");
         return _tokenNames[tokenId];
+    }
+
+    /// @notice Atualiza metadados IPFS do NFT (owner apenas)
+    function updateIPFSMetadata(
+        uint256 tokenId,
+        string calldata imageHash,
+        string calldata highResHash,
+        string calldata metadataHash
+    ) external onlyOwner {
+        require(_ownerOf(tokenId) != address(0), "ElemNFT: token does not exist");
+        
+        ipfsMetadata[tokenId] = IPFSMetadata({
+            imageHash: imageHash,
+            highResHash: highResHash,
+            metadataHash: metadataHash,
+            timestamp: block.timestamp
+        });
+        
+        emit IPFSMetadataUpdated(tokenId, imageHash, highResHash, metadataHash);
+    }
+
+    /// @notice Retorna URL de download de alta resolução
+    function getHighResDownloadURL(uint256 tokenId) external view returns (string memory) {
+        require(tokenId < MAX_SUPPLY, "ElemNFT: invalid tokenId");
+        
+        IPFSMetadata memory metadata = ipfsMetadata[tokenId];
+        if (bytes(metadata.highResHash).length > 0) {
+            return string(abi.encodePacked(
+                "https://fuchsia-bright-ferret-822.mypinata.cloud/ipfs/",
+                metadata.highResHash
+            ));
+        }
+        
+        return "";
+    }
+
+    /// @notice Retorna metadados IPFS completos
+    function getIPFSMetadata(uint256 tokenId) external view returns (
+        string memory imageHash,
+        string memory highResHash,
+        string memory metadataHash,
+        uint256 timestamp
+    ) {
+        require(tokenId < MAX_SUPPLY, "ElemNFT: invalid tokenId");
+        
+        IPFSMetadata memory metadata = ipfsMetadata[tokenId];
+        return (
+            metadata.imageHash,
+            metadata.highResHash,
+            metadata.metadataHash,
+            metadata.timestamp
+        );
+    }
+
+    /// @notice Verifica se NFT tem metadados IPFS
+    function hasIPFSMetadata(uint256 tokenId) external view returns (bool) {
+        require(tokenId < MAX_SUPPLY, "ElemNFT: invalid tokenId");
+        
+        IPFSMetadata memory metadata = ipfsMetadata[tokenId];
+        return bytes(metadata.imageHash).length > 0;
     }
 
     /// @notice Altera preço de mint (owner)

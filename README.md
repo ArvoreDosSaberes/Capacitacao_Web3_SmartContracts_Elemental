@@ -43,13 +43,13 @@ docs/                  – Documentação e enunciado original
 
 | Contrato    | Endereço                                  | Explorer                                                                             |
 | ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------ |
-| ElemToken   | 0x54f40dd929A41E8c3aC858b426058298Fee94663 | [Etherscan](https://sepolia.etherscan.io/address/0x54f40dd929A41E8c3aC858b426058298Fee94663) |
-| ElemNFT     | 0x910311e288AB3303d1b279b42e9C81BD1b40Fd7A | [Etherscan](https://sepolia.etherscan.io/address/0x910311e288AB3303d1b279b42e9C81BD1b40Fd7A) |
-| ElemStaking | 0xBAfaFBFcdDF337bf6Dce76182FaEB375505114BF | [Etherscan](https://sepolia.etherscan.io/address/0xBAfaFBFcdDF337bf6Dce76182FaEB375505114BF) |
-| ElemDAO     | 0xB0414B2A82cD6BD9AfE643d8892e04D697c072a6 | [Etherscan](https://sepolia.etherscan.io/address/0xB0414B2A82cD6BD9AfE643d8892e04D697c072a6) |
-| PriceFeed   | 0x359ea7Fc304DA0B02FfDA71c409db79A7371CB1E | [Etherscan](https://sepolia.etherscan.io/address/0x359ea7Fc304DA0B02FfDA71c409db79A7371CB1E) |
+| ElemToken   | 0xd8347173AF4D69Ae63ECfE4FF73C12fE349ed44e | [Etherscan](https://sepolia.etherscan.io/address/0xd8347173AF4D69Ae63ECfE4FF73C12fE349ed44e) |
+| ElemNFT     | 0x25e814A250a3C6a576e1F8e766328CC3C5B4fF89 | [Etherscan](https://sepolia.etherscan.io/address/0x25e814A250a3C6a576e1F8e766328CC3C5B4fF89) |
+| ElemStaking | 0xd20379FA2B0c4F787983A72895707789e395AC06 | [Etherscan](https://sepolia.etherscan.io/address/0xd20379FA2B0c4F787983A72895707789e395AC06) |
+| ElemDAO     | 0x585e25acf2200aDA4736CdCd9F3128fA072f615D | [Etherscan](https://sepolia.etherscan.io/address/0x585e25acf2200aDA4736CdCd9F3128fA072f615D) |
+| PriceFeed   | 0x3e59BfD48799217eA7c1b5cCE25b920C6E791fcC | [Etherscan](https://sepolia.etherscan.io/address/0x3e59BfD48799217eA7c1b5cCE25b920C6E791fcC) |
 
-> **Deploy realizado em 11/04/2026 na Sepolia Testnet**
+> **Deploy realizado em 12/04/2026 na Sepolia Testnet**
 
 ## Pré-requisitos
 

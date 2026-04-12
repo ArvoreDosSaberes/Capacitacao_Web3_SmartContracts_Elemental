@@ -7,11 +7,11 @@
 // Contract addresses – atualizar após deploy em Sepolia
 // ============================================================
 const ADDRESSES = {
-    ElemToken:   "0x54f40dd929A41E8c3aC858b426058298Fee94663",
-    ElemNFT:     "0x910311e288AB3303d1b279b42e9C81BD1b40Fd7A",
-    ElemStaking: "0xBAfaFBFcdDF337bf6Dce76182FaEB375505114BF",
-    ElemDAO:     "0xB0414B2A82cD6BD9AfE643d8892e04D697c072a6",
-    PriceFeed:   "0x359ea7Fc304DA0B02FfDA71c409db79A7371CB1E",
+    ElemToken:   "0xd8347173AF4D69Ae63ECfE4FF73C12fE349ed44e",
+    ElemNFT:     "0x25e814A250a3C6a576e1F8e766328CC3C5B4fF89",
+    ElemStaking: "0xd20379FA2B0c4F787983A72895707789e395AC06",
+    ElemDAO:     "0x585e25acf2200aDA4736CdCd9F3128fA072f615D",
+    PriceFeed:   "0x3e59BfD48799217eA7c1b5cCE25b920C6E791fcC",
 };
 
 // ============================================================
@@ -77,17 +77,19 @@ const ABI = {
 // ============================================================
 // NFT Metadata
 // ============================================================
+const IPFS_GATEWAY = "https://fuchsia-bright-ferret-822.mypinata.cloud/ipfs/";
+
 const NFT_META = [
-    { id: 0,  name: "Fire Elemental",   img: "/NFT/nft_01_fire_elemental.gif",   thumb: "imgs/nft/nft_01_fire_elemental_thumb.png"   },
-    { id: 1,  name: "Water Spirit",      img: "/NFT/nft_02_water_spirit.gif",     thumb: "imgs/nft/nft_02_water_spirit_thumb.png"     },
-    { id: 2,  name: "Earth Golem",       img: "/NFT/nft_03_earth_golem.gif",      thumb: "imgs/nft/nft_03_earth_golem_thumb.png"      },
-    { id: 3,  name: "Lightning Bolt",    img: "/NFT/nft_04_lightning_bolt.gif",    thumb: "imgs/nft/nft_04_lightning_bolt_thumb.png"    },
-    { id: 4,  name: "Shadow Phantom",    img: "/NFT/nft_05_shadow_phantom.gif",   thumb: "imgs/nft/nft_05_shadow_phantom_thumb.png"   },
-    { id: 5,  name: "Crystal Gem",       img: "/NFT/nft_06_crystal_gem.gif",      thumb: "imgs/nft/nft_06_crystal_gem_thumb.png"      },
-    { id: 6,  name: "Solar Flare",       img: "/NFT/nft_07_solar_flare.gif",      thumb: "imgs/nft/nft_07_solar_flare_thumb.png"      },
-    { id: 7,  name: "Toxic Slime",       img: "/NFT/nft_08_toxic_slime.gif",      thumb: "imgs/nft/nft_08_toxic_slime_thumb.png"      },
-    { id: 8,  name: "Frost Shard",       img: "/NFT/nft_09_frost_shard.gif",      thumb: "imgs/nft/nft_09_frost_shard_thumb.png"      },
-    { id: 9,  name: "Magma Core",        img: "/NFT/nft_10_magma_core.gif",       thumb: "imgs/nft/nft_10_magma_core_thumb.png"       },
+    { id: 0,  name: "Fire Elemental",   cid: "bafkreiegrsudhiu7nj3ya6kquogwsm4y5ob7qsernczfplpkyytaorw7s4", img: "/NFT/nft_01_fire_elemental.gif",   thumb: "imgs/nft/nft_01_fire_elemental_thumb.png"   },
+    { id: 1,  name: "Water Spirit",      cid: "bafkreibavuqexo3iga5k6ndp2hwmu655fa7sfebocwedcfce2nkqe3o4ly", img: "/NFT/nft_02_water_spirit.gif",     thumb: "imgs/nft/nft_02_water_spirit_thumb.png"     },
+    { id: 2,  name: "Earth Golem",       cid: "bafkreib2ucmwfrcafrxho37xxjam65rmesoazeh2tojowxt5p7zjomvfme", img: "/NFT/nft_03_earth_golem.gif",      thumb: "imgs/nft/nft_03_earth_golem_thumb.png"      },
+    { id: 3,  name: "Lightning Bolt",    cid: "bafkreibm5ghiagapyz7jnjumb4ssohcs6nmh22dqrohjdapd4ndfxf2mzu", img: "/NFT/nft_04_lightning_bolt.gif",    thumb: "imgs/nft/nft_04_lightning_bolt_thumb.png"    },
+    { id: 4,  name: "Shadow Phantom",    cid: "bafkreiguquans32puczpkp5sbh35vnb5gmoih62475ehl2iycoradtt5ha", img: "/NFT/nft_05_shadow_phantom.gif",   thumb: "imgs/nft/nft_05_shadow_phantom_thumb.png"   },
+    { id: 5,  name: "Crystal Gem",       cid: "bafkreic72k2rudh3an4amgh52hwidikocsuiorvkj4aqzs7ywfutpa5g5e", img: "/NFT/nft_06_crystal_gem.gif",      thumb: "imgs/nft/nft_06_crystal_gem_thumb.png"      },
+    { id: 6,  name: "Solar Flare",       cid: "bafkreihpcvsui6lsqjnjwasrqcaupeczhi5ru4onh4x4ty4xsz77xe4rta", img: "/NFT/nft_07_solar_flare.gif",      thumb: "imgs/nft/nft_07_solar_flare_thumb.png"      },
+    { id: 7,  name: "Toxic Slime",       cid: "bafkreidbvemvnrkxos24g77pls4yt7leq2v7mvipcofg3mu2nvinzjhjo4", img: "/NFT/nft_08_toxic_slime.gif",      thumb: "imgs/nft/nft_08_toxic_slime_thumb.png"      },
+    { id: 8,  name: "Frost Shard",       cid: "bafkreigymcuvytgm7ggpnrnhjb7ijcricpbqtqe4nhln4k7vxrzezwkoay", img: "/NFT/nft_09_frost_shard.gif",      thumb: "imgs/nft/nft_09_frost_shard_thumb.png"      },
+    { id: 9,  name: "Magma Core",        cid: "bafkreidlgpxwvtbdzwjoywopuvdyps54jv5q4gdx6nt2wi334spkihx7ve", img: "/NFT/nft_10_magma_core.gif",       thumb: "imgs/nft/nft_10_magma_core_thumb.png"       },
 ];
 
 // ============================================================
@@ -234,7 +236,7 @@ async function refreshNFTs() {
             let ownerLabel = "Disponível";
             let isMinted = nft.id < totalMinted;
             let isOwner = false;
-            let highResURL = "";
+            let downloadURL = "";
 
             if (isMinted) {
                 try {
@@ -244,12 +246,13 @@ async function refreshNFTs() {
                         : `Owner: ${shortAddr(owner)}`;
                     isOwner = owner.toLowerCase() === userAddress.toLowerCase();
                     
-                    // Verificar se tem metadados IPFS para download
+                    // URL de download: contrato (alta res) → fallback IPFS CID (GIF)
                     if (isOwner) {
                         try {
-                            highResURL = await contracts.nft.getHighResDownloadURL(nft.id);
-                        } catch (_) {
-                            // Sem metadados IPFS ainda
+                            downloadURL = await contracts.nft.getHighResDownloadURL(nft.id);
+                        } catch (_) {}
+                        if (!downloadURL && nft.cid) {
+                            downloadURL = IPFS_GATEWAY + nft.cid;
                         }
                     }
                 } catch (_) {
@@ -269,9 +272,9 @@ async function refreshNFTs() {
                         : isOwner
                             ? `<div class="owner-actions">
                                 <span style="color:var(--success);font-size:0.8rem;">Na sua carteira</span>
-                                ${highResURL
-                                    ? `<button class="btn btn-success btn-download" data-url="${highResURL}" data-name="${nft.name}">
-                                        Download Alta Resolução
+                                ${downloadURL
+                                    ? `<button class="btn btn-success btn-download" data-url="${downloadURL}" data-name="${nft.name}">
+                                        ⬇ Download IPFS
                                        </button>`
                                     : '<span style="color:var(--text-secondary);font-size:0.7rem;">Download indisponível</span>'
                                 }
@@ -385,7 +388,8 @@ async function refreshProposals() {
 async function mintNFT(tokenId, price) {
     try {
         toast("Enviando transação de mint…", "info");
-        const uri = NFT_META[tokenId].img;
+        const nft = NFT_META[tokenId];
+        const uri = nft.cid ? (IPFS_GATEWAY + nft.cid) : nft.img;
         const tx = await contracts.nft.mint(uri, { value: price });
         toast("Aguardando confirmação…", "info");
         await tx.wait();
