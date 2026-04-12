@@ -18,13 +18,6 @@
 
 # Elemental Protocol - MVP Web3 Completo
 
-![Language: Portuguese](https://img.shields.io/badge/Language-Portuguese-brightgreen.svg)
-![Solidity](https://img.shields.io/badge/Solidity-%5E0.8.20-363636?logo=solidity)
-![Ethereum](https://img.shields.io/badge/Ethereum-Sepolia-3C3C3D?logo=ethereum)
-![Chainlink](https://img.shields.io/badge/Chainlink-Oracle-375BD2?logo=chainlink)
-![Status](https://img.shields.io/badge/Status-Educa%C3%A7%C3%A3o-brightgreen)
-![Repository Size](https://img.shields.io/github/repo-size/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental)
-
 Protocolo descentralizado que combina Token ERC-20, NFT ERC-721 (pixel art), Staking com recompensas ajustadas por oráculo Chainlink, e DAO simplificada — deployado em testnet Ethereum (Sepolia).
 
 ## Prazo de Entrega: *12 de abril de 2026 23:59*
