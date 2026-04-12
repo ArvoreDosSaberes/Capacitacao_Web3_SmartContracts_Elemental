@@ -1,3 +1,12 @@
+[![Visits](https://hits.dwyl.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental_SCRIPTS_AUDITORIA.svg?style=flat-square&show=unique)](https://hits.dwyl.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental_SCRIPTS_AUDITORIA)
+![Language: Portuguese](https://img.shields.io/badge/Language-Portuguese-brightgreen.svg)
+![Hardhat](https://img.shields.io/badge/Hardhat-v3.x-FFF100?logo=hardhat)
+![Slither](https://img.shields.io/badge/Slither-Static%20Analysis-1E88E5)
+![Mythril](https://img.shields.io/badge/Mythril-Symbolic%20Analysis-7E57C2)
+![Node.js](https://img.shields.io/badge/Node.js-18+-green)
+![Python](https://img.shields.io/badge/Python-3.8+-blue)
+![Status](https://img.shields.io/badge/Status-Ready-brightgreen)
+
 # Tutorial de Uso dos Scripts de Auditoria
 
 Este tutorial explica como usar os novos scripts de auditoria de segurança do projeto Elemental Protocol.

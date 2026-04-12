@@ -18,6 +18,7 @@ contract ElemToken is ERC20, ERC20Burnable, Ownable, Pausable {
         ERC20("Elemental Token", "ELEM")
         Ownable(initialOwner)
     {
+        
         _mint(initialOwner, MAX_SUPPLY);
     }
 

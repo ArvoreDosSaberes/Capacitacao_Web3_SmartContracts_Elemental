@@ -1,5 +1,12 @@
 # Scripts de Aprendizado Hardhat - Elemental Protocol
 
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Hardhat](https://img.shields.io/badge/Hardhat-3.x-FFCA28)
+![Node.js](https://img.shields.io/badge/Node.js-18+-green)
+![Solidity](https://img.shields.io/badge/Solidity-0.8+-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+
 Este diretório contém scripts interativos para aprender e testar o Hardhat 3 com o Elemental Protocol.
 
 ## 📋 Scripts Disponíveis
