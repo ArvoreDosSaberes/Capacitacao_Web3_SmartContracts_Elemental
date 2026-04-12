@@ -1,10 +1,22 @@
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=ArvoreDosSaberes.Capacitacao_Web3_SmartContracts_Elemental)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Last Commit](https://img.shields.io/github/last-commit/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental?style=flat-square)](https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental/commits/main)
 [![Stars](https://img.shields.io/github/stars/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental?style=flat-square)](https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental/stargazers)
 [![Forks](https://img.shields.io/github/forks/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental?style=flat-square)](https://github.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental/network/members)
 [![Visits](https://hits.dwyl.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental.svg?style=flat-square&show=unique)](https://hits.dwyl.com/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental)
+![Language: Portuguese](https://img.shields.io/badge/Language-Portuguese-brightgreen.svg)
+![Solidity](https://img.shields.io/badge/Solidity-%5E0.8.20-363636?logo=solidity)
+![Ethereum](https://img.shields.io/badge/Ethereum-Sepolia-3C3C3D?logo=ethereum)
+![Chainlink](https://img.shields.io/badge/Chainlink-Oracle-375BD2?logo=chainlink)
+![Status](https://img.shields.io/badge/Status-Educa%C3%A7%C3%A3o-brightgreen)
+![Repository Size](https://img.shields.io/github/repo-size/ArvoreDosSaberes/Capacitacao_Web3_SmartContracts_Elemental)
 
-# Elemental Protocol – MVP Web3 Completo
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:d97706,50:ea580c,100:92400e&height=220&section=header&text=Elemental%20Protocol&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=MVP%20Web3%20Completo%20com%20Smart%20Contracts&descSize=18&descAlignY=55&descColor=94a3b8" width="100%" alt="Elemental Protocol Header"/>
+</p>
+
+# Elemental Protocol - MVP Web3 Completo
 
 ![Language: Portuguese](https://img.shields.io/badge/Language-Portuguese-brightgreen.svg)
 ![Solidity](https://img.shields.io/badge/Solidity-%5E0.8.20-363636?logo=solidity)
@@ -130,3 +142,18 @@ npm run audit:mythril -- contracts/ElemStaking.sol --solv 0.8.20
 Este projeto está licenciado sob a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:92400e,50:ea580c,100:d97706&height=120&section=footer" width="100%" alt="Footer"/>
+</p>
+
+---
+**Resumo:** Protocolo Web3 completo com Token ERC-20, NFT ERC-721, Staking e DAO para capacitação em Smart Contracts
+**Data de Criação:** 2025-04-11
+**Autor:** Carlos Delfino
+**Versão:** 1.0
+**Última Atualização:** 2025-04-11
+**Atualizado por:** Carlos Delfino
+**Histórico de Alterações:**
+- 2025-04-11 - Criado por Carlos Delfino - Versão 1.0
+- 2025-04-11 - Atualizado por Carlos Delfino - Adicionado header e footer animados com cores laranja/marrom - Versão 1.1
