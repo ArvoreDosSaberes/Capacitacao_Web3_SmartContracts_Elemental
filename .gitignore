@@ -1,5 +1,7 @@
 .venv*
 node_modules
+.deps
+.env
 # Node modules
 /node_modules
 
