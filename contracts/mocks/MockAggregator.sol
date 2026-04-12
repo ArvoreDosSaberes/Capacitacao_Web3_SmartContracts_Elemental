@@ -7,12 +7,12 @@ pragma solidity ^0.8.20;
  */
 contract MockAggregator {
     int256 private _price;
-    uint8 private _decimals;
+    uint8 public immutable decimals;
     bool private _shouldRevert;
 
     constructor(int256 initialPrice, uint8 decimals_) {
         _price = initialPrice;
-        _decimals = decimals_;
+        decimals = decimals_;
     }
 
     function setPrice(int256 newPrice) external {
@@ -21,10 +21,6 @@ contract MockAggregator {
 
     function setShouldRevert(bool revert_) external {
         _shouldRevert = revert_;
-    }
-
-    function decimals() external view returns (uint8) {
-        return _decimals;
     }
 
     function latestRoundData()

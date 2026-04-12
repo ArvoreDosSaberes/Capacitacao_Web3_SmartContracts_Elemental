@@ -16,5 +16,12 @@ module.exports = {
     tests: "./test", 
     cache: "./cache",
     artifacts: "./artifacts"
+  },
+  networks: {
+    sepolia: {
+      url: process.env.SEPOLIA_URL || "https://sepolia.infura.io/v3/",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 11155111
+    }
   }
 };

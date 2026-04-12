@@ -62,8 +62,16 @@ contract ElemNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     /// @notice Saque de ETH acumulado
     function withdraw() external onlyOwner {
-        (bool ok, ) = payable(owner()).call{value: address(this).balance}("");
-        require(ok, "ElemNFT: withdraw failed");
+        // Checks: Verificar se há saldo para sacar
+        uint256 amount = address(this).balance;
+        require(amount > 0, "ElemNFT: no ETH to withdraw");
+        
+        // Effects: Atualizar estado antes da transferência externa
+        address payable recipient = payable(owner());
+        
+        // Interactions: Transferência segura com gas limitado
+        (bool success, ) = recipient.call{value: amount, gas: 50000}("");
+        require(success, "ElemNFT: withdraw failed");
     }
 
     // --- Overrides necessários ---

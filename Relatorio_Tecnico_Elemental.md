@@ -369,16 +369,23 @@ Taxa Ajustada = Taxa Base × (Preço Referência / Preço Atual)
 
 ### 5.2 Endereços dos Contratos e Dados de Implantação
 
-#### Endereços Após Deploy
+#### Endereços Após Deploy (Atualizado - 11/04/2026)
 
 | Contrato    | Endereço                                  | Explorer                                                                             |
 | ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------ |
-| ElemToken   | 0x698b0E159EAc4529AE3Efae4ff2Fc3c4199e33ad | [Etherscan](https://sepolia.etherscan.io/address/0x698b0E159EAc4529AE3Efae4ff2Fc3c4199e33ad) |
-| ElemNFT     | 0xa42e84d982c3ad4D93EDC10F3EBCE575a39E1E45 | [Etherscan](https://sepolia.etherscan.io/address/0xa42e84d982c3ad4D93EDC10F3EBCE575a39E1E45) |
-| ElemStaking | 0x3A44a68870bc18FC1DD7a77C261d9558598539cF | [Etherscan](https://sepolia.etherscan.io/address/0x3A44a68870bc18FC1DD7a77C261d9558598539cF) |
-| ElemDAO     | 0xd30BA53B9e7Cae9C0dc876A69EECA55f397c6E39 | [Etherscan](https://sepolia.etherscan.io/address/0xd30BA53B9e7Cae9C0dc876A69EECA55f397c6E39) |
-| PriceFeed   | 0x333E34B317Bf21e0a3C17FCE43ac169aBddd7A63 | [Etherscan](https://sepolia.etherscan.io/address/0x333E34B317Bf21e0a3C17FCE43ac169aBddd7A63) |
-| MockAggregator | 0xD71c94475ff91c8BF74BEc1b54Dc991Df7143DFc | [Etherscan](https://sepolia.etherscan.io/address/0xD71c94475ff91c8BF74BEc1b54Dc991Df7143DFc) |
+| ElemToken   | 0x54f40dd929A41E8c3aC858b426058298Fee94663 | [Etherscan](https://sepolia.etherscan.io/address/0x54f40dd929A41E8c3aC858b426058298Fee94663) |
+| ElemNFT     | 0x910311e288AB3303d1b279b42e9C81BD1b40Fd7A | [Etherscan](https://sepolia.etherscan.io/address/0x910311e288AB3303d1b279b42e9C81BD1b40Fd7A) |
+| ElemStaking | 0xBAfaFBFcdDF337bf6Dce76182FaEB375505114BF | [Etherscan](https://sepolia.etherscan.io/address/0xBAfaFBFcdDF337bf6Dce76182FaEB375505114BF) |
+| ElemDAO     | 0xB0414B2A82cD6BD9AfE643d8892e04D697c072a6 | [Etherscan](https://sepolia.etherscan.io/address/0xB0414B2A82cD6BD9AfE643d8892e04D697c072a6) |
+| PriceFeed   | 0x359ea7Fc304DA0B02FfDA71c409db79A7371CB1E | [Etherscan](https://sepolia.etherscan.io/address/0x359ea7Fc304DA0B02FfDA71c409db79A7371CB1E) |
+| MockAggregator | 0x7FD2f583491e0bac5D137Ef2D77392D2932BFFc6 | [Etherscan](https://sepolia.etherscan.io/address/0x7FD2f583491e0bac5D137Ef2D77392D2932BFFc6) |
+
+**Deployer:** 0xcEF96AEee7322F10e3024cbCb7b3b9388d965392  
+**Rede:** Sepolia Testnet  
+**Data:** 11 de Abril de 2026  
+**Método:** Deploy via ethers.js (scripts personalizados)  
+**Status:** Correções de segurança aplicadas antes do deploy  
+**Custo Total:** ~0.001 ETH em taxas de deploy
 
 #### Dados Necessários para Implantação
 
