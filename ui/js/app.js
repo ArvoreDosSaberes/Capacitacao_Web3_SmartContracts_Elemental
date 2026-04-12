@@ -38,7 +38,11 @@ const ABI = {
         "function creatureName(uint256 tokenId) view returns (string)",
         "function ownerOf(uint256 tokenId) view returns (address)",
         "function totalSupply() view returns (uint256)",
+        "function getHighResDownloadURL(uint256 tokenId) view returns (string)",
+        "function getIPFSMetadata(uint256 tokenId) view returns (string imageHash, string highResHash, string metadataHash, uint256 timestamp)",
+        "function hasIPFSMetadata(uint256 tokenId) view returns (bool)",
         "event NFTMinted(address indexed to, uint256 indexed tokenId, string name)",
+        "event IPFSMetadataUpdated(uint256 indexed tokenId, string imageHash, string highResHash, string metadataHash)",
     ],
     ElemStaking: [
         "function totalStaked() view returns (uint256)",
@@ -230,6 +234,7 @@ async function refreshNFTs() {
             let ownerLabel = "Disponível";
             let isMinted = nft.id < totalMinted;
             let isOwner = false;
+            let highResURL = "";
 
             if (isMinted) {
                 try {
@@ -238,22 +243,39 @@ async function refreshNFTs() {
                         ? "Seu NFT"
                         : `Owner: ${shortAddr(owner)}`;
                     isOwner = owner.toLowerCase() === userAddress.toLowerCase();
+                    
+                    // Verificar se tem metadados IPFS para download
+                    if (isOwner) {
+                        try {
+                            highResURL = await contracts.nft.getHighResDownloadURL(nft.id);
+                        } catch (_) {
+                            // Sem metadados IPFS ainda
+                        }
+                    }
                 } catch (_) {
                     ownerLabel = "Mintado";
                 }
             }
 
             card.innerHTML = `
-                <img src="${nft.img}" alt="${nft.name}" loading="lazy">
+                <img src="${nft.thumb}" alt="${nft.name}" loading="lazy">
                 <div class="nft-info">
-                    <h4>#${nft.id} – ${nft.name}</h4>
+                    <h4>#${nft.id} - ${nft.name}</h4>
                     <p>${ownerLabel}</p>
                     ${!isMinted
                         ? `<button class="btn btn-primary btn-mint" data-id="${nft.id}" data-price="${mintPrice}">
                             Mint (${priceFmt} ETH)
                            </button>`
                         : isOwner
-                            ? '<span style="color:var(--success);font-size:0.8rem;">✔ Na sua carteira</span>'
+                            ? `<div class="owner-actions">
+                                <span style="color:var(--success);font-size:0.8rem;">Na sua carteira</span>
+                                ${highResURL
+                                    ? `<button class="btn btn-success btn-download" data-url="${highResURL}" data-name="${nft.name}">
+                                        Download Alta Resolução
+                                       </button>`
+                                    : '<span style="color:var(--text-secondary);font-size:0.7rem;">Download indisponível</span>'
+                                }
+                               </div>`
                             : ''
                     }
                 </div>`;
@@ -271,6 +293,11 @@ async function refreshNFTs() {
         // Mint buttons
         grid.querySelectorAll(".btn-mint").forEach((btn) => {
             btn.addEventListener("click", () => mintNFT(btn.dataset.id, btn.dataset.price));
+        });
+
+        // Download buttons
+        grid.querySelectorAll(".btn-download").forEach((btn) => {
+            btn.addEventListener("click", () => downloadHighRes(btn.dataset.url, btn.dataset.name));
         });
     } catch (e) {
         console.warn("refreshNFTs:", e.message);
@@ -504,6 +531,28 @@ async function executeProposal(id) {
     } catch (err) {
         console.error(err);
         toast("Erro ao executar: " + (err.reason || err.message), "error");
+    }
+}
+
+async function downloadHighRes(url, name) {
+    try {
+        toast("Iniciando download...", "info");
+        
+        // Criar link temporário para download
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${name.replace(/\s+/g, '_')}_high_res.png`;
+        link.target = '_blank';
+        
+        // Adicionar ao DOM e clicar
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        toast("Download iniciado!", "success");
+    } catch (err) {
+        console.error(err);
+        toast("Erro no download: " + err.message, "error");
     }
 }
 
